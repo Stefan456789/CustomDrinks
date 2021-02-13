@@ -27,7 +27,7 @@ import java.util.List;
 public class GiveDrinks implements CommandExecutor, TabCompleter, Listener {
 
 
-    public String[] drinkList = {"Margarita", "Mai Tai", "White_Russian", "Caipirinha", "Screwdriver", "Bloody Mary", "Whisky Sour", "Old Fashioned", "Manhatten", "Martini", "Daiquiri", "Cosmopoutan", "Singapore Sling", "Mojito", "Mint Julep"};
+    public String[] drinkList = {"Margarita", "Mai Tai", "White_Russian", "Caipirinha", "Screwdriver", "Bloody Mary", "Whisky Sour", "Old Fashioned", "Manhatten", "Martini", "Daiquiri", "Cosmopoutan", "Singapore Sling", "Mojito", "Mint Julep", "Tom Collins", "Pina Colada", "Sea Breeze", "Cuba Libre", "Bellini"};
 
 
     @Override
@@ -42,7 +42,7 @@ public class GiveDrinks implements CommandExecutor, TabCompleter, Listener {
                 PotionMeta pmeta = (PotionMeta) item.getItemMeta();
                 pmeta.setDisplayName(ChatColor.DARK_PURPLE + drinks[x]);
                 pmeta.setColor(Color.fromRGB(255,255,255));
-                pmeta.setCustomModelData(2);
+                pmeta.setCustomModelData(x+1);
                 pmeta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
                 item.setItemMeta(pmeta);
                 sender.getServer().getPlayer(args[0]).getInventory().addItem(item);
