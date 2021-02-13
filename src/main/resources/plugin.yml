@@ -1,0 +1,7 @@
+name: customDrinks
+version: 1.0.0
+author: Stefan456789
+main: me.Stefan456789.Main
+commands:
+  drink:
+    usage: /drink [Player] [Drink]
