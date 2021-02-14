@@ -21,6 +21,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.PotionMeta;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -34,7 +35,7 @@ public class GiveDrinks implements CommandExecutor, TabCompleter, Listener {
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
         String[] drinks = drinkList;
         ItemStack item = new ItemStack(Material.POTION);
-        if ((args.length == 2 || args.length == 3) && sender.getServer().getPlayer(args[0]).isOnline()) {
+        if ((args.length >= 2 || args.length <= 3) && sender.getServer().getPlayer(args[0]).isOnline()) {
             for (int x = 0; x < drinks.length; x++) {
                 if (args.length == 2) if (!drinks[x].equals(args[1])) continue;
                 if (args.length == 3) if (!drinks[x].equals(args[1] + " " + args[2])) continue;
@@ -46,6 +47,7 @@ public class GiveDrinks implements CommandExecutor, TabCompleter, Listener {
                 pmeta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
                 item.setItemMeta(pmeta);
                 sender.getServer().getPlayer(args[0]).getInventory().addItem(item);
+
                 return true;
             }
 
