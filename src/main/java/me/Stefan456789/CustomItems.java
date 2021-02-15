@@ -15,13 +15,13 @@ public class CustomItems extends JavaPlugin {
     public void onEnable() {
         super.onEnable();
         getServer().getConsoleSender().sendMessage("[CustomItems] plugin loaded!");
-        CustomItems main = this;
-        GiveDrinks dHandler = new GiveDrinks(main);
+
+        GiveDrinks dHandler = new GiveDrinks(this);
 
         getCommand("drink").setExecutor(dHandler);
         getCommand("drink").setTabCompleter(dHandler);
 
-        GiveMusicDisk diskHandler = new GiveMusicDisk(main);
+        GiveMusicDisk diskHandler = new GiveMusicDisk(this);
 
         getCommand("disc").setExecutor(diskHandler);
         getCommand("disc").setTabCompleter(diskHandler);
