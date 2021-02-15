@@ -1,6 +1,6 @@
 package me.Stefan456789.PlayerInteraction;
 
-import me.Stefan456789.Main;
+import me.Stefan456789.CustomItems;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -9,13 +9,12 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 public class DrinkEffects implements Listener {
 
-    private Main main;
-    public void drinkEffects(Main main){
+    private CustomItems main;
+    public DrinkEffects(CustomItems main){
         this.main = main;
     }
 
@@ -34,9 +33,9 @@ public class DrinkEffects implements Listener {
                 player.addPotionEffect(PotionEffectType.POISON.createEffect(20,1),true);
             }
             if((int) (Math.random()*5) == 1) {
-
                 player.addPotionEffect(PotionEffectType.CONFUSION.createEffect(140,255),true);
             }
+
             Bukkit.getServer().getScheduler().runTaskLaterAsynchronously(main, new Runnable() {
                 public void run() {
                     if (player.getInventory().contains(Material.GLASS_BOTTLE)){

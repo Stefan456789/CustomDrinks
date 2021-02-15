@@ -11,7 +11,7 @@ public class DisableAnvil implements Listener {
     public void onInventoryClickEvent(InventoryClickEvent event) {
         if (event.getInventory().getType() == InventoryType.ANVIL) {
             if (event.getSlotType() == InventoryType.SlotType.RESULT) {
-                if (event.getInventory().getItem(0).containsEnchantment(Enchantment.CHANNELING) || event.getInventory().getItem(0).getItemMeta().getCustomModelData() != 0) {
+                if (event.getInventory().getItem(0).getItemMeta().getCustomModelData() != 0) {
                     event.setCancelled(true);
                 }
 

@@ -1,7 +1,9 @@
 name: customDrinks
 version: 1.0.3
 author: Stefan456789
-main: me.Stefan456789.Main
+main: me.Stefan456789.CustomItems
 commands:
   drink:
-    usage: /drink [Player] [Drink]
+    usage: /drink [Drink]
+  disc:
+    usage: /disc [Song]
