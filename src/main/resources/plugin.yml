@@ -2,6 +2,7 @@ name: customDrinks
 version: 1.0.3
 author: Stefan456789
 main: me.Stefan456789.CustomItems
+api-version: 1.16
 commands:
   drink:
     usage: /drink [Drink]
