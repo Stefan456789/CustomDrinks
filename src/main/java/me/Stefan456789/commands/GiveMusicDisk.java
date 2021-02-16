@@ -26,28 +26,31 @@ public class GiveMusicDisk implements CommandExecutor, TabCompleter {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
 
-        ItemStack item = new ItemStack(Material.MUSIC_DISC_11);
+        if (main.state) {
+            ItemStack item = new ItemStack(Material.MUSIC_DISC_11);
+            for (int x = 0; x < main.diskList.length; x++) {
+                String nameGuess = args[0];
 
-        for (int x = 0; x < main.diskList.length; x++) {
-            String nameGuess = args[0];
+                for (int z = 1; z < args.length; z++) {
+                    nameGuess = nameGuess + " " + args[z];
+                }
 
-            for (int z = 1; z < args.length; z++) {
-                nameGuess = nameGuess + " " + args[z];
+                if (!main.diskList[x].equals(nameGuess)) continue;
+
+                ItemMeta meta = item.getItemMeta();
+                meta.setDisplayName(ChatColor.DARK_PURPLE + main.diskList[x]);
+                meta.setCustomModelData(x + 1);
+                item.setItemMeta(meta);
+
+
+                sender.getServer().getPlayer(sender.getName()).getInventory().addItem(item);
+
+                return true;
             }
-
-            if (!main.diskList[x].equals(nameGuess)) continue;
-
-            ItemMeta meta = item.getItemMeta();
-            meta.setDisplayName(ChatColor.DARK_PURPLE + main.diskList[x]);
-            meta.setCustomModelData(x + 1);
-            item.setItemMeta(meta);
-
-
-            sender.getServer().getPlayer(sender.getName()).getInventory().addItem(item);
-
-            return true;
+            sender.sendMessage("This music disc doesn't exist!");
         }
-        return false;
+        sender.sendMessage("This command is currently disabled, contact an Admin!");
+        return true;
     }
 
     @Override
@@ -58,6 +61,10 @@ public class GiveMusicDisk implements CommandExecutor, TabCompleter {
 
         for (String guess : main.diskList) {
             if (guess.toLowerCase().startsWith(args[0].toLowerCase()))
+                if (guess.split(" ").length < args.length){
+                    List<String> nothing = new ArrayList<String>();
+                    return nothing;
+                }
                 suggestion.add(guess);
         }
 

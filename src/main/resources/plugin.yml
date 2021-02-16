@@ -8,3 +8,5 @@ commands:
     usage: /drink [Drink]
   disc:
     usage: /disc [Song]
+  customItemState:
+    usage: /customItemsState <ON/OFF>

@@ -11,6 +11,8 @@ import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffectType;
 
+import java.util.Objects;
+
 public class DrinkEffects implements Listener {
 
     private CustomItems main;
@@ -21,7 +23,7 @@ public class DrinkEffects implements Listener {
     @SuppressWarnings("deprecation")
     @EventHandler
     public void playerItemConsumeEvent(PlayerItemConsumeEvent e) {
-        if(e.getItem().getType().equals(Material.POTION) && e.getItem().getItemMeta().getCustomModelData() != 0){
+        if(e.getItem().getType().equals(Material.POTION) && Objects.requireNonNull(e.getItem().getItemMeta()).getCustomModelData() != 0){
             Player player = e.getPlayer();
             if((int) (Math.random()*10) == 1) {
                 player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_BURP, 1,(float) (Math.random()*2+0.5));

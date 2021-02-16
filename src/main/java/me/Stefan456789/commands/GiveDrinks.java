@@ -29,49 +29,40 @@ public class GiveDrinks implements CommandExecutor, TabCompleter, Listener {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
 
-        ItemStack item = new ItemStack(Material.POTION);
-        if (args.length >= 1 || args.length <= 2) {
-            for (int x = 0; x < main.drinkList.length; x++) {
-                if (args.length == 1) if (!main.drinkList[x].equals(args[0])) continue;
-                if (args.length == 2) if (!main.drinkList[x].equals(args[0] + " " + args[1])) continue;
+        if (main.state) {
+            if ((args.length == 1 || args.length == 2)) {
+                ItemStack item = new ItemStack(Material.POTION);
+                for (int x = 0; x < main.drinkList.length; x++) {
+                    if (args.length == 1) if (!main.drinkList[x].equals(args[0])) continue;
+                    if (args.length == 2) if (!main.drinkList[x].equals(args[0] + " " + args[1])) continue;
 
-                PotionMeta pmeta = (PotionMeta) item.getItemMeta();
-                pmeta.setDisplayName(ChatColor.DARK_PURPLE + main.drinkList[x]);
-                pmeta.setColor(Color.fromRGB(255, 255, 255));
-                pmeta.setCustomModelData(x + 1);
-                pmeta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
-                item.setItemMeta(pmeta);
-                sender.getServer().getPlayer(sender.getName()).getInventory().addItem(item);
+                    PotionMeta pmeta = (PotionMeta) item.getItemMeta();
+                    pmeta.setDisplayName(ChatColor.DARK_PURPLE + main.drinkList[x]);
+                    pmeta.setColor(Color.fromRGB(255, 255, 255));
+                    pmeta.setCustomModelData(x + 1);
+                    pmeta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
+                    item.setItemMeta(pmeta);
+                    sender.getServer().getPlayer(sender.getName()).getInventory().addItem(item);
 
-                return true;
+                    return true;
+                }
+                sender.sendMessage("This drink does not exist!");
             }
-
-
+            return false;
         }
-        return false;
+        sender.sendMessage("This command is currently disabled, contact an Admin!");
+        return true;
     }
 
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String s, String[] args) {
 
         List<String> suggestion = new ArrayList<String>();
-
-        /*if (args.length == 1) {
-            OfflinePlayer[] ofPlayers = sender.getServer().getOfflinePlayers();
-            for (int x = 0; x < ofPlayers.length; x++) {
-                if(ofPlayers[x].isOnline()) {
-                    String guess = ofPlayers[x].getName();
-                    if (guess.toLowerCase().startsWith(args[0].toLowerCase()))
-                        suggestion.add(guess);
-                }
+        if (args.length <= 2) {
+            for (String guess : main.drinkList) {
+                if (guess.toLowerCase().startsWith(args[0].toLowerCase()))
+                    suggestion.add(guess);
             }
-
-        }*/
-
-
-        for (String guess : main.drinkList) {
-            if (guess.toLowerCase().startsWith(args[0].toLowerCase()))
-                suggestion.add(guess);
         }
 
 
