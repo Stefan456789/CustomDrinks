@@ -10,11 +10,11 @@ import java.util.Objects;
 
 public class DisableAnvil implements Listener {
     @EventHandler
-    public void onInventoryClickEvent(InventoryClickEvent event) {
-        if (event.getInventory().getType() == InventoryType.ANVIL) {
-            if (event.getSlotType() == InventoryType.SlotType.RESULT) {
-                if (Objects.requireNonNull(Objects.requireNonNull(event.getInventory().getItem(0)).getItemMeta()).getCustomModelData() != 0) {
-                    event.setCancelled(true);
+    public void onInventoryClickEvent(InventoryClickEvent e) {
+        if (e.getInventory().getType() == InventoryType.ANVIL) {
+            if (e.getSlotType() == InventoryType.SlotType.RESULT  && e.getInventory().getItem(0).hasItemMeta() && e.getInventory().getItem(0).getItemMeta().hasCustomModelData()) {
+                if (e.getInventory().getItem(0).getItemMeta().getCustomModelData() != 0) {
+                    e.setCancelled(true);
                 }
             }
         }

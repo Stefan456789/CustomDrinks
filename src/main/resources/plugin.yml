@@ -1,5 +1,5 @@
-name: customDrinks
-version: 1.0.3
+name: CustomItems
+version: 1.0.4
 author: Stefan456789
 main: me.Stefan456789.CustomItems
 api-version: 1.16
@@ -8,5 +8,5 @@ commands:
     usage: /drink [Drink]
   disc:
     usage: /disc [Song]
-  customItemState:
+  customItemsState:
     usage: /customItemsState <ON/OFF>
